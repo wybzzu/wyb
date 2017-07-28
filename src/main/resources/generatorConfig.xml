@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >  
+<generatorConfiguration>  
+    <!-- 数据库驱动包位置 -->  
+    <classPathEntry  
+        location="C:\Users\Administrator\.m2\repository\com\microsoft\sql-jdbc\4.0\sql-jdbc-4.0.jar" />
+        
+   <!--  <classPathEntry  
+        location="C:\Users\Administrator\.m2\repository\com\mysql\mysql\5.17\mysql-5.17.jar"/>     -->
+    <context id="context1">  
+        <commentGenerator>  
+            <property name="addRemarkComments" value="true"/> 
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>    
+        <!-- <commentGenerator type="com.ht.custom.CommentGenerator.MyCommentGenerator">
+		</commentGenerator>  -->
+        <!-- 数据库链接URL、用户名、密码 -->  
+        <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"  
+            connectionURL="jdbc:sqlserver://10.41.24.21:1433;databaseName=YDDB1" userId="sa" password="sjzx@123">
+        	<property name="remarksReporting" value="true"></property> 
+        	<property name="useInformationSchema" value="true"></property>
+        </jdbcConnection> 
+        <!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver" 
+        	connectionURL="jdbc:mysql://192.168.0.103:3306/HN_DATA_CENTER" userId="root" password="123456">
+        	<property name="remarksReporting" value="true"></property>
+        	<property name="useInformationSchema" value="true"></property> 
+        </jdbcConnection> -->
+        <!-- 生成模型的包名和位置 -->  
+        <javaModelGenerator targetPackage="com.huitu.api.hnsl.entity" targetProject="src/main/java" />  
+        <!-- 生成的映射文件报名和位置 -->  
+        <sqlMapGenerator targetPackage="mappers.hnsl" targetProject="src/main/resources" />  
+        <!-- 生成DAO的包名和位置 -->  
+        <javaClientGenerator targetPackage="com.huitu.api.hnsl.dao" targetProject="src/main/java" type="XMLMAPPER" />  
+        <!-- 要生成的那些表(更改tableName 和domainObjectName 就可以了) -->  
+      
+      
+        <!-- <table schema="dbo" tableName="BE_ADCD_B" domainObjectName="AdCode" enableCountByExample="false" enableUpdateByExample="false"  
+            enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="false"> 
+            
+        </table>  
+        
+        <table schema="dbo" tableName="BE_CONSLT_C" domainObjectName="Conslt" enableCountByExample="false" enableUpdateByExample="false"  
+            enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="false"> 
+            
+        </table>  -->
+        
+       <!--  <table catalog="YDDB" schema="dbo" tableName="%" enableCountByExample="false" enableUpdateByExample="false"  
+            enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="false"> 
+            
+        </table>  -->
+        
+       <!--  <table catalog="YDDB" schema="dbo" tableName="ST_SOIL_R" enableCountByExample="false" enableUpdateByExample="false"  
+            enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="false"> 
+            
+        </table>  -->
+        
+        <table catalog="YDDB1" schema="dbo" tableName="%" enableCountByExample="true" enableUpdateByExample="true"
+            enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+            
+        </table>
+
+       <!-- <table catalog="YDDB1" schema="dbo" tableName="FB_WARNCNTDTL_R" enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+
+        </table>-->
+
+        <!--  <table catalog="FBDC" schema="dbo" tableName="%" enableCountByExample="false" enableUpdateByExample="false"
+             enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="false">
+
+         </table>  -->
+        
+        
+        
+      <!--   <table schema="usif" tableName="unit_datasource" domainObjectName="Cd" enableCountByExample="false" enableUpdateByExample="false"  
+            enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="false"> 
+            
+        </table> 
+           -->
+    </context>  
+</generatorConfiguration>  

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huitu.api.hnsl.dao.FbWarncntSMapper">
+  <resultMap id="BaseResultMap" type="com.huitu.api.hnsl.entity.FbWarncntS">
+    <id column="ADCD" jdbcType="VARCHAR" property="adcd" />
+    <result column="ADNM" jdbcType="VARCHAR" property="adnm" />
+    <result column="NEWCNT" jdbcType="NUMERIC" property="newcnt" />
+    <result column="INCNT" jdbcType="NUMERIC" property="incnt" />
+    <result column="OTTCNT" jdbcType="NUMERIC" property="ottcnt" />
+    <result column="CLTCNT" jdbcType="NUMERIC" property="cltcnt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ADCD, ADNM, NEWCNT, INCNT, OTTCNT, CLTCNT
+  </sql>
+  <select id="selectByExample" parameterType="com.huitu.api.hnsl.entity.FbWarncntSExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from YDDB1.dbo.FB_WARNCNT_S
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from YDDB1.dbo.FB_WARNCNT_S
+    where ADCD = #{adcd,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from YDDB1.dbo.FB_WARNCNT_S
+    where ADCD = #{adcd,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.huitu.api.hnsl.entity.FbWarncntSExample">
+    delete from YDDB1.dbo.FB_WARNCNT_S
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.huitu.api.hnsl.entity.FbWarncntS">
+    insert into YDDB1.dbo.FB_WARNCNT_S (ADCD, ADNM, NEWCNT, 
+      INCNT, OTTCNT, CLTCNT
+      )
+    values (#{adcd,jdbcType=VARCHAR}, #{adnm,jdbcType=VARCHAR}, #{newcnt,jdbcType=NUMERIC}, 
+      #{incnt,jdbcType=NUMERIC}, #{ottcnt,jdbcType=NUMERIC}, #{cltcnt,jdbcType=NUMERIC}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huitu.api.hnsl.entity.FbWarncntS">
+    insert into YDDB1.dbo.FB_WARNCNT_S
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adcd != null">
+        ADCD,
+      </if>
+      <if test="adnm != null">
+        ADNM,
+      </if>
+      <if test="newcnt != null">
+        NEWCNT,
+      </if>
+      <if test="incnt != null">
+        INCNT,
+      </if>
+      <if test="ottcnt != null">
+        OTTCNT,
+      </if>
+      <if test="cltcnt != null">
+        CLTCNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adcd != null">
+        #{adcd,jdbcType=VARCHAR},
+      </if>
+      <if test="adnm != null">
+        #{adnm,jdbcType=VARCHAR},
+      </if>
+      <if test="newcnt != null">
+        #{newcnt,jdbcType=NUMERIC},
+      </if>
+      <if test="incnt != null">
+        #{incnt,jdbcType=NUMERIC},
+      </if>
+      <if test="ottcnt != null">
+        #{ottcnt,jdbcType=NUMERIC},
+      </if>
+      <if test="cltcnt != null">
+        #{cltcnt,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.huitu.api.hnsl.entity.FbWarncntSExample" resultType="java.lang.Long">
+    select count(*) from YDDB1.dbo.FB_WARNCNT_S
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update YDDB1.dbo.FB_WARNCNT_S
+    <set>
+      <if test="record.adcd != null">
+        ADCD = #{record.adcd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adnm != null">
+        ADNM = #{record.adnm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newcnt != null">
+        NEWCNT = #{record.newcnt,jdbcType=NUMERIC},
+      </if>
+      <if test="record.incnt != null">
+        INCNT = #{record.incnt,jdbcType=NUMERIC},
+      </if>
+      <if test="record.ottcnt != null">
+        OTTCNT = #{record.ottcnt,jdbcType=NUMERIC},
+      </if>
+      <if test="record.cltcnt != null">
+        CLTCNT = #{record.cltcnt,jdbcType=NUMERIC},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update YDDB1.dbo.FB_WARNCNT_S
+    set ADCD = #{record.adcd,jdbcType=VARCHAR},
+      ADNM = #{record.adnm,jdbcType=VARCHAR},
+      NEWCNT = #{record.newcnt,jdbcType=NUMERIC},
+      INCNT = #{record.incnt,jdbcType=NUMERIC},
+      OTTCNT = #{record.ottcnt,jdbcType=NUMERIC},
+      CLTCNT = #{record.cltcnt,jdbcType=NUMERIC}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huitu.api.hnsl.entity.FbWarncntS">
+    update YDDB1.dbo.FB_WARNCNT_S
+    <set>
+      <if test="adnm != null">
+        ADNM = #{adnm,jdbcType=VARCHAR},
+      </if>
+      <if test="newcnt != null">
+        NEWCNT = #{newcnt,jdbcType=NUMERIC},
+      </if>
+      <if test="incnt != null">
+        INCNT = #{incnt,jdbcType=NUMERIC},
+      </if>
+      <if test="ottcnt != null">
+        OTTCNT = #{ottcnt,jdbcType=NUMERIC},
+      </if>
+      <if test="cltcnt != null">
+        CLTCNT = #{cltcnt,jdbcType=NUMERIC},
+      </if>
+    </set>
+    where ADCD = #{adcd,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huitu.api.hnsl.entity.FbWarncntS">
+    update YDDB1.dbo.FB_WARNCNT_S
+    set ADNM = #{adnm,jdbcType=VARCHAR},
+      NEWCNT = #{newcnt,jdbcType=NUMERIC},
+      INCNT = #{incnt,jdbcType=NUMERIC},
+      OTTCNT = #{ottcnt,jdbcType=NUMERIC},
+      CLTCNT = #{cltcnt,jdbcType=NUMERIC}
+    where ADCD = #{adcd,jdbcType=VARCHAR}
+  </update>
+</mapper>

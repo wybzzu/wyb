@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huitu.api.hnsl.dao.FbSeecardBMapper">
+  <resultMap id="BaseResultMap" type="com.huitu.api.hnsl.entity.FbSeecardB">
+    <result column="ADNM" jdbcType="VARCHAR" property="adnm" />
+    <result column="TOWN" jdbcType="VARCHAR" property="town" />
+    <result column="VILLAGE" jdbcType="VARCHAR" property="village" />
+    <result column="HOSTNM" jdbcType="VARCHAR" property="hostnm" />
+    <result column="MOBILEPHE" jdbcType="VARCHAR" property="mobilephe" />
+    <result column="PEOPLES" jdbcType="NUMERIC" property="peoples" />
+    <result column="TRFERPOINT" jdbcType="VARCHAR" property="trferpoint" />
+    <result column="MGRNM" jdbcType="VARCHAR" property="mgrnm" />
+    <result column="MGRPHE" jdbcType="VARCHAR" property="mgrphe" />
+    <result column="WARNINGSIG" jdbcType="VARCHAR" property="warningsig" />
+    <result column="adcd" jdbcType="VARCHAR" property="adcd" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ADNM, TOWN, VILLAGE, HOSTNM, MOBILEPHE, PEOPLES, TRFERPOINT, MGRNM, MGRPHE, WARNINGSIG, 
+    adcd
+  </sql>
+  <select id="selectByExample" parameterType="com.huitu.api.hnsl.entity.FbSeecardBExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from YDDB1.dbo.FB_SEECARD_B
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.huitu.api.hnsl.entity.FbSeecardBExample">
+    delete from YDDB1.dbo.FB_SEECARD_B
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.huitu.api.hnsl.entity.FbSeecardB">
+    insert into YDDB1.dbo.FB_SEECARD_B (ADNM, TOWN, VILLAGE, 
+      HOSTNM, MOBILEPHE, PEOPLES, 
+      TRFERPOINT, MGRNM, MGRPHE, 
+      WARNINGSIG, adcd)
+    values (#{adnm,jdbcType=VARCHAR}, #{town,jdbcType=VARCHAR}, #{village,jdbcType=VARCHAR}, 
+      #{hostnm,jdbcType=VARCHAR}, #{mobilephe,jdbcType=VARCHAR}, #{peoples,jdbcType=NUMERIC}, 
+      #{trferpoint,jdbcType=VARCHAR}, #{mgrnm,jdbcType=VARCHAR}, #{mgrphe,jdbcType=VARCHAR}, 
+      #{warningsig,jdbcType=VARCHAR}, #{adcd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huitu.api.hnsl.entity.FbSeecardB">
+    insert into YDDB1.dbo.FB_SEECARD_B
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adnm != null">
+        ADNM,
+      </if>
+      <if test="town != null">
+        TOWN,
+      </if>
+      <if test="village != null">
+        VILLAGE,
+      </if>
+      <if test="hostnm != null">
+        HOSTNM,
+      </if>
+      <if test="mobilephe != null">
+        MOBILEPHE,
+      </if>
+      <if test="peoples != null">
+        PEOPLES,
+      </if>
+      <if test="trferpoint != null">
+        TRFERPOINT,
+      </if>
+      <if test="mgrnm != null">
+        MGRNM,
+      </if>
+      <if test="mgrphe != null">
+        MGRPHE,
+      </if>
+      <if test="warningsig != null">
+        WARNINGSIG,
+      </if>
+      <if test="adcd != null">
+        adcd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adnm != null">
+        #{adnm,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null">
+        #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="village != null">
+        #{village,jdbcType=VARCHAR},
+      </if>
+      <if test="hostnm != null">
+        #{hostnm,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilephe != null">
+        #{mobilephe,jdbcType=VARCHAR},
+      </if>
+      <if test="peoples != null">
+        #{peoples,jdbcType=NUMERIC},
+      </if>
+      <if test="trferpoint != null">
+        #{trferpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="mgrnm != null">
+        #{mgrnm,jdbcType=VARCHAR},
+      </if>
+      <if test="mgrphe != null">
+        #{mgrphe,jdbcType=VARCHAR},
+      </if>
+      <if test="warningsig != null">
+        #{warningsig,jdbcType=VARCHAR},
+      </if>
+      <if test="adcd != null">
+        #{adcd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.huitu.api.hnsl.entity.FbSeecardBExample" resultType="java.lang.Long">
+    select count(*) from YDDB1.dbo.FB_SEECARD_B
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update YDDB1.dbo.FB_SEECARD_B
+    <set>
+      <if test="record.adnm != null">
+        ADNM = #{record.adnm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.town != null">
+        TOWN = #{record.town,jdbcType=VARCHAR},
+      </if>
+      <if test="record.village != null">
+        VILLAGE = #{record.village,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hostnm != null">
+        HOSTNM = #{record.hostnm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobilephe != null">
+        MOBILEPHE = #{record.mobilephe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.peoples != null">
+        PEOPLES = #{record.peoples,jdbcType=NUMERIC},
+      </if>
+      <if test="record.trferpoint != null">
+        TRFERPOINT = #{record.trferpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mgrnm != null">
+        MGRNM = #{record.mgrnm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mgrphe != null">
+        MGRPHE = #{record.mgrphe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.warningsig != null">
+        WARNINGSIG = #{record.warningsig,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adcd != null">
+        adcd = #{record.adcd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update YDDB1.dbo.FB_SEECARD_B
+    set ADNM = #{record.adnm,jdbcType=VARCHAR},
+      TOWN = #{record.town,jdbcType=VARCHAR},
+      VILLAGE = #{record.village,jdbcType=VARCHAR},
+      HOSTNM = #{record.hostnm,jdbcType=VARCHAR},
+      MOBILEPHE = #{record.mobilephe,jdbcType=VARCHAR},
+      PEOPLES = #{record.peoples,jdbcType=NUMERIC},
+      TRFERPOINT = #{record.trferpoint,jdbcType=VARCHAR},
+      MGRNM = #{record.mgrnm,jdbcType=VARCHAR},
+      MGRPHE = #{record.mgrphe,jdbcType=VARCHAR},
+      WARNINGSIG = #{record.warningsig,jdbcType=VARCHAR},
+      adcd = #{record.adcd,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

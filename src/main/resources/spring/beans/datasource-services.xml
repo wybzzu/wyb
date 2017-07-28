@@ -1,0 +1,130 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+   
+    
+
+    <!--手工注入 resource和service中的beans-->
+    	  	<bean id="fbBrdescRResource" class="com.huitu.api.hnsl.resource.FbBrdescRResource">
+	        <property name="service">
+	            <ref bean="fbBrdescRServiceImpl"></ref>
+	        </property>
+	        <property name="redisTemplate">
+	            <ref bean="redisTemplate"></ref>
+	        </property>
+	    </bean>
+	    <bean id="fbBrdescRServiceImpl" class="com.huitu.api.hnsl.service.impl.FbBrdescRServiceImpl">
+	        <property name="mapper">
+	            <ref bean="fbBrdescRMapper"></ref>
+	        </property>
+	    </bean>
+	  	<bean id="fbBrrealRResource" class="com.huitu.api.hnsl.resource.FbBrrealRResource">
+	        <property name="service">
+	            <ref bean="fbBrrealRServiceImpl"></ref>
+	        </property>
+	        <property name="redisTemplate">
+	            <ref bean="redisTemplate"></ref>
+	        </property>
+	    </bean>
+	    <bean id="fbBrrealRServiceImpl" class="com.huitu.api.hnsl.service.impl.FbBrrealRServiceImpl">
+	        <property name="mapper">
+	            <ref bean="fbBrrealRMapper"></ref>
+	        </property>
+	    </bean>
+
+	  	<bean id="fbPersonBResource" class="com.huitu.api.hnsl.resource.FbPersonBResource">
+	        <property name="service">
+	            <ref bean="fbPersonBServiceImpl"></ref>
+	        </property>
+	        <property name="redisTemplate">
+	            <ref bean="redisTemplate"></ref>
+	        </property>
+	    </bean>
+	    <bean id="fbPersonBServiceImpl" class="com.huitu.api.hnsl.service.impl.FbPersonBServiceImpl">
+	        <property name="mapper">
+	            <ref bean="fbPersonBMapper"></ref>
+	        </property>
+	    </bean>
+	  	<bean id="fbSeecardBResource" class="com.huitu.api.hnsl.resource.FbSeecardBResource">
+	        <property name="service">
+	            <ref bean="fbSeecardBServiceImpl"></ref>
+	        </property>
+	        <property name="redisTemplate">
+	            <ref bean="redisTemplate"></ref>
+	        </property>
+	    </bean>
+	    <bean id="fbSeecardBServiceImpl" class="com.huitu.api.hnsl.service.impl.FbSeecardBServiceImpl">
+	        <property name="mapper">
+	            <ref bean="fbSeecardBMapper"></ref>
+	        </property>
+	    </bean>
+	  	<bean id="fbWarncntdtlRResource" class="com.huitu.api.hnsl.resource.FbWarncntdtlRResource">
+	        <property name="service">
+	            <ref bean="fbWarncntdtlRServiceImpl"></ref>
+	        </property>
+	        <property name="redisTemplate">
+	            <ref bean="redisTemplate"></ref>
+	        </property>
+	    </bean>
+	    <bean id="fbWarncntdtlRServiceImpl" class="com.huitu.api.hnsl.service.impl.FbWarncntdtlRServiceImpl">
+	        <property name="mapper">
+	            <ref bean="fbWarncntdtlRMapper"></ref>
+	        </property>
+	    </bean>
+	  	<bean id="fbWarncntSResource" class="com.huitu.api.hnsl.resource.FbWarncntSResource">
+	        <property name="service">
+	            <ref bean="fbWarncntSServiceImpl"></ref>
+	        </property>
+	        <property name="redisTemplate">
+	            <ref bean="redisTemplate"></ref>
+	        </property>
+	    </bean>
+	    <bean id="fbWarncntSServiceImpl" class="com.huitu.api.hnsl.service.impl.FbWarncntSServiceImpl">
+	        <property name="mapper">
+	            <ref bean="fbWarncntSMapper"></ref>
+	        </property>
+	    </bean>
+	  	<bean id="fbWthfrRResource" class="com.huitu.api.hnsl.resource.FbWthfrRResource">
+	        <property name="service">
+	            <ref bean="fbWthfrRServiceImpl"></ref>
+	        </property>
+	        <property name="redisTemplate">
+	            <ref bean="redisTemplate"></ref>
+	        </property>
+	    </bean>
+	    <bean id="fbWthfrRServiceImpl" class="com.huitu.api.hnsl.service.impl.FbWthfrRServiceImpl">
+	        <property name="mapper">
+	            <ref bean="fbWthfrRMapper"></ref>
+	        </property>
+	    </bean>
+	  	<bean id="stStcntdtlRResource" class="com.huitu.api.hnsl.resource.StStcntdtlRResource">
+	        <property name="service">
+	            <ref bean="stStcntdtlRServiceImpl"></ref>
+	        </property>
+	        <property name="redisTemplate">
+	            <ref bean="redisTemplate"></ref>
+	        </property>
+	    </bean>
+	    <bean id="stStcntdtlRServiceImpl" class="com.huitu.api.hnsl.service.impl.StStcntdtlRServiceImpl">
+	        <property name="mapper">
+	            <ref bean="stStcntdtlRMapper"></ref>
+	        </property>
+	    </bean>
+	  	<bean id="stStcntSResource" class="com.huitu.api.hnsl.resource.StStcntSResource">
+	        <property name="service">
+	            <ref bean="stStcntSServiceImpl"></ref>
+	        </property>
+	        <property name="redisTemplate">
+	            <ref bean="redisTemplate"></ref>
+	        </property>
+	    </bean>
+	    <bean id="stStcntSServiceImpl" class="com.huitu.api.hnsl.service.impl.StStcntSServiceImpl">
+	        <property name="mapper">
+	            <ref bean="stStcntSMapper"></ref>
+	        </property>
+	    </bean>
+</beans>

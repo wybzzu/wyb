@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huitu.api.hnsl.dao.FbPersonBMapper">
+  <resultMap id="BaseResultMap" type="com.huitu.api.hnsl.entity.FbPersonB">
+    <id column="PERSONCD" jdbcType="VARCHAR" property="personcd" />
+    <id column="ADCD" jdbcType="VARCHAR" property="adcd" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="DEPTCD" jdbcType="VARCHAR" property="deptcd" />
+    <result column="DEPTNM" jdbcType="VARCHAR" property="deptnm" />
+    <result column="ADNM" jdbcType="VARCHAR" property="adnm" />
+    <result column="POSITION" jdbcType="VARCHAR" property="position" />
+    <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+    <result column="OFFICETEL" jdbcType="VARCHAR" property="officetel" />
+    <result column="NT" jdbcType="VARCHAR" property="nt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    PERSONCD, ADCD, NAME, DEPTCD, DEPTNM, ADNM, POSITION, MOBILE, OFFICETEL, NT
+  </sql>
+  <select id="selectByExample" parameterType="com.huitu.api.hnsl.entity.FbPersonBExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from YDDB1.dbo.FB_PERSON_B
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.huitu.api.hnsl.entity.FbPersonBKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from YDDB1.dbo.FB_PERSON_B
+    where PERSONCD = #{personcd,jdbcType=VARCHAR}
+      and ADCD = #{adcd,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.huitu.api.hnsl.entity.FbPersonBKey">
+    delete from YDDB1.dbo.FB_PERSON_B
+    where PERSONCD = #{personcd,jdbcType=VARCHAR}
+      and ADCD = #{adcd,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.huitu.api.hnsl.entity.FbPersonBExample">
+    delete from YDDB1.dbo.FB_PERSON_B
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.huitu.api.hnsl.entity.FbPersonB">
+    insert into YDDB1.dbo.FB_PERSON_B (PERSONCD, ADCD, NAME, 
+      DEPTCD, DEPTNM, ADNM, 
+      POSITION, MOBILE, OFFICETEL, 
+      NT)
+    values (#{personcd,jdbcType=VARCHAR}, #{adcd,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{deptcd,jdbcType=VARCHAR}, #{deptnm,jdbcType=VARCHAR}, #{adnm,jdbcType=VARCHAR}, 
+      #{position,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{officetel,jdbcType=VARCHAR}, 
+      #{nt,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huitu.api.hnsl.entity.FbPersonB">
+    insert into YDDB1.dbo.FB_PERSON_B
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="personcd != null">
+        PERSONCD,
+      </if>
+      <if test="adcd != null">
+        ADCD,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="deptcd != null">
+        DEPTCD,
+      </if>
+      <if test="deptnm != null">
+        DEPTNM,
+      </if>
+      <if test="adnm != null">
+        ADNM,
+      </if>
+      <if test="position != null">
+        POSITION,
+      </if>
+      <if test="mobile != null">
+        MOBILE,
+      </if>
+      <if test="officetel != null">
+        OFFICETEL,
+      </if>
+      <if test="nt != null">
+        NT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="personcd != null">
+        #{personcd,jdbcType=VARCHAR},
+      </if>
+      <if test="adcd != null">
+        #{adcd,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcd != null">
+        #{deptcd,jdbcType=VARCHAR},
+      </if>
+      <if test="deptnm != null">
+        #{deptnm,jdbcType=VARCHAR},
+      </if>
+      <if test="adnm != null">
+        #{adnm,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="officetel != null">
+        #{officetel,jdbcType=VARCHAR},
+      </if>
+      <if test="nt != null">
+        #{nt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.huitu.api.hnsl.entity.FbPersonBExample" resultType="java.lang.Long">
+    select count(*) from YDDB1.dbo.FB_PERSON_B
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update YDDB1.dbo.FB_PERSON_B
+    <set>
+      <if test="record.personcd != null">
+        PERSONCD = #{record.personcd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adcd != null">
+        ADCD = #{record.adcd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptcd != null">
+        DEPTCD = #{record.deptcd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptnm != null">
+        DEPTNM = #{record.deptnm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adnm != null">
+        ADNM = #{record.adnm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.position != null">
+        POSITION = #{record.position,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null">
+        MOBILE = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.officetel != null">
+        OFFICETEL = #{record.officetel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nt != null">
+        NT = #{record.nt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update YDDB1.dbo.FB_PERSON_B
+    set PERSONCD = #{record.personcd,jdbcType=VARCHAR},
+      ADCD = #{record.adcd,jdbcType=VARCHAR},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      DEPTCD = #{record.deptcd,jdbcType=VARCHAR},
+      DEPTNM = #{record.deptnm,jdbcType=VARCHAR},
+      ADNM = #{record.adnm,jdbcType=VARCHAR},
+      POSITION = #{record.position,jdbcType=VARCHAR},
+      MOBILE = #{record.mobile,jdbcType=VARCHAR},
+      OFFICETEL = #{record.officetel,jdbcType=VARCHAR},
+      NT = #{record.nt,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huitu.api.hnsl.entity.FbPersonB">
+    update YDDB1.dbo.FB_PERSON_B
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcd != null">
+        DEPTCD = #{deptcd,jdbcType=VARCHAR},
+      </if>
+      <if test="deptnm != null">
+        DEPTNM = #{deptnm,jdbcType=VARCHAR},
+      </if>
+      <if test="adnm != null">
+        ADNM = #{adnm,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        POSITION = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="officetel != null">
+        OFFICETEL = #{officetel,jdbcType=VARCHAR},
+      </if>
+      <if test="nt != null">
+        NT = #{nt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PERSONCD = #{personcd,jdbcType=VARCHAR}
+      and ADCD = #{adcd,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huitu.api.hnsl.entity.FbPersonB">
+    update YDDB1.dbo.FB_PERSON_B
+    set NAME = #{name,jdbcType=VARCHAR},
+      DEPTCD = #{deptcd,jdbcType=VARCHAR},
+      DEPTNM = #{deptnm,jdbcType=VARCHAR},
+      ADNM = #{adnm,jdbcType=VARCHAR},
+      POSITION = #{position,jdbcType=VARCHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      OFFICETEL = #{officetel,jdbcType=VARCHAR},
+      NT = #{nt,jdbcType=VARCHAR}
+    where PERSONCD = #{personcd,jdbcType=VARCHAR}
+      and ADCD = #{adcd,jdbcType=VARCHAR}
+  </update>
+</mapper>

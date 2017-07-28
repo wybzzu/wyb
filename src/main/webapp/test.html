@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="./libs/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+	
+		<script type="text/javascript">
+			/*var headers = {"Rang":"field=id#desc;size=10;pageNum=100;max=10","Cache":false};
+			var url="http://localhost:8082/hnsl-api/sl323/v0.1/basic/adCode/selectAll";
+			var type="post";
+			var data={};*/
+			//data.stcd="31003600";
+			//data.wptn="5";
+			//data.tm="2013-07-06 08:00:00";
+			
+			
+			
+			//url="http://192.168.0.238:8082/api-hnsl/api/v0.1/stRiverR/selectAll";//查询
+			//url="http://192.168.0.238:8082/api-hnsl/api/v0.1/stRsvrR/selectAll";//查询
+			//url="http://10.41.24.2:8082/api-hnsl/api/v0.1/stRsvrR/selectAll";//查询
+			//type="post";
+			//data.adcd="1";
+			//data.addvnm="t";
+			/*url="http://localhost:8080/api-hnsl/api/hnsl/v0.1/adCode/deleteByPrimaryKey/1";//删除
+			type="delete"
+			
+			url="http://localhost:8080/api-hnsl/api/hnsl/v0.1/adCode/selectByPrimaryKey/2";//获取
+			type="get"*/
+			
+			/*url="http://localhost:8080/api-hnsl/api/hnsl/v0.1/conslt/deleteByPrimaryKey";//删除
+			type="delete"
+			data.cnsinfid="1";
+			data.cnstp="2";
+			alert(JSON.stringify(data));
+			*/
+			/*url="http://localhost:8080/api-hnsl/api/hnsl/v0.1/adCode/insert";//新增
+			type="put";
+			data.adcd="1";
+			data.adnm="2";
+			alert(JSON.stringify(data));*/
+			//alert(JSON.stringify(data));
+			
+			var sendTest=function(){
+				type=$('#types').val();
+				headers=$('#headers').val();
+				headers=JSON.parse(headers);
+				data=$('#params').val();
+				$('#result').html("");
+				//data=JSON.parse(data);
+				url=$('#urls').val();
+				$.ajax({
+						type:type,
+						headers:headers,
+						url: url,
+						dataType: 'json',
+						//crossDomain:true,
+						//xhrFields:{withCredentials:true},
+						data:data,
+						contentType: 'application/json',
+						cache : false,
+						success:function(data,status,xhr){
+							if(xhr.status==200){
+									$('#result').html(JSON.stringify(data));
+							}else{
+								alert(xhr.statusText);
+							}
+						},
+						error:function(data,status,xhr){
+							alert(data.responseText);
+						}
+				});
+			};
+			var clearRe=function(){
+				
+				$('#result').html("");
+			}
+			
+		</script>
+		<style type="text/css">
+			table{
+				border: 0px;
+				border-collapse: collapse;
+			}
+			
+			table td,th{
+				border: 0px;
+			}
+			tr td:first-child{
+				width: 100px;
+				text-align: right;
+			}
+			input{
+				width: 480px;
+			}
+		</style>
+	</head>
+	<body>
+		<table border="" cellspacing="" cellpadding="">
+			<tr><th colspan="2">api测试</th></tr>
+			<tr><td>url:</td><td><input type="text" id="urls" value="http://192.168.0.238:8082/api-app/api/v0.1/fbAdcdB/selectAll" /></td></tr>
+			<tr><td>method:</td><td><select id="types">
+										<option value="post">post</option>
+										<option value="get">get</option>
+									</select>
+								</td>
+			</tr>
+			<tr><td>headers:</td><td><input type="text" id="headers" value='{"Rang":"field=id#desc;size=10;pageNum=2;max=10","Cache":false}' /></td></tr>
+			<tr><td>param:</td><td><input type="text" id="params" value='{"adcd":"31"}' /></td></tr>
+			<tr><td colspan="2"><input type="button" id="" onclick="sendTest();" value="测试" /></td></tr>
+			<tr><td colspan="2"><input type="button" id="" onclick="clearRe();" value="清空结果" /></td></tr>
+		</table>
+		<div id="result">
+			
+		</div>
+	</body>
+</html>

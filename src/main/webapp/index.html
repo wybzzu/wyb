@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta charset="utf-8" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="./libs/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="./libs/bootstrap/css/bootstrap-theme.css" />
+	<link rel="stylesheet" type="text/css" href="./libs/bootstrapValidator/css/bootstrapValidator.min.css" />
+
+	<style>
+		body{
+			margin:20px;
+		}
+		label{
+			width:250px!important;
+			text-align:left!important;
+		}
+
+		@media screen and (max-width: 960px){
+		body{
+			margin:20px;
+			font-size:25px;
+		}
+		#cardForm{
+			margin: 0 auto;
+			min-width: 250px;
+		}
+		input{
+			height:50px!important;
+			font-size:35px!important;
+			border:1px solid black!important;
+		}
+		label{
+			width:250px!important;
+			1border:1px solid red;
+			text-align:left!important;
+		}
+		.btn{
+			font-size:45px;
+			height:80px;
+		}
+	}
+	</style>
+</head>
+
+<body>
+
+<form class="form-horizontal" id="cardForm" oncsubmit="return false;">
+	<div class="form-group">
+		<label for="adnm" class="col-sm-2 control-label">所属旗县</label>
+		<div class="col-sm-12">
+			<input type="text" class="form-control" name="adnm">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputtext3" class="col-sm-2 control-label">所属乡镇</label>
+		<div class="col-sm-12">
+			<input type="text" class="form-control" name="town">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputtext3" class="col-sm-2 control-label">所属村庄</label>
+		<div class="col-sm-12">
+			<input type="text" class="form-control" name="village">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputtext3" class="col-sm-2 control-label">户主姓名</label>
+		<div class="col-sm-12">
+			<input type="text" class="form-control" name="hostnm" >
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputtext3" class="col-sm-2 control-label">电话</label>
+		<div class="col-sm-12">
+			<input type="text" class="form-control" name="mobilephe" >
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputtext3" class="col-sm-2 control-label">家庭人口</label>
+		<div class="col-sm-12">
+			<input type="text" class="form-control" name="peoples" >
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputtext3" class="col-sm-2 control-label">转移地点</label>
+		<div class="col-sm-12">
+			<input type="text" class="form-control" name="trferpoint" >
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputtext3" class="col-sm-2 control-label">转移负责人</label>
+		<div class="col-sm-12">
+			<input type="text" class="form-control" name="mgrnm" >
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputtext3" class="col-sm-2 control-label">负责人电话</label>
+		<div class="col-sm-12">
+			<input type="text" class="form-control" name="mgrphe" >
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputtext3" class="col-sm-2 control-label">预警信号</label>
+		<div class="col-sm-12">
+			<input type="text" class="form-control" name="warningsig" >
+			<input type="hidden" class="form-control" name="adcd" value="1500000000" >
+		</div>
+	</div>
+	<div class="form-group">
+		<div class=" col-sm-12">
+			<button type="button" class="btn btn-primary  btn-block" id='sub'>提交</button>
+		</div>
+	</div>
+</form>
+
+<div class="modal fade" id="mymodal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title">消息</h4>
+			</div>
+			<div class="modal-body">
+				<p>内容已提交成功</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">知道了</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script src="./libs/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./libs/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./libs/bootstrapValidator/js/bootstrapValidator.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+			$(function($){
+
+				$('#cardForm').bootstrapValidator({
+           			 message: 'This value is not valid',
+           			 feedbackIcons: {
+               			 valid: 'glyphicon glyphicon-ok',
+               		 	invalid: 'glyphicon glyphicon-remove',
+               		 	validating: 'glyphicon glyphicon-refresh'
+           			 },
+           			 fields: {
+                		adnm: {
+                   			 message: '所属旗县验证失败',
+                    		 validators: {
+                      		 	notEmpty: {
+                           		 	message: '所属旗县不能为空'
+                      		 	 },
+                      			 stringLength: {
+                           			min: 1,
+                            		max: 28,
+                            		message: '所属旗县长度必须在1到28位之间'
+                       			 },
+                       			 regexp: {
+                            		regexp: /^[a-zA-Z0-9_\W\u4e00-\u9fa5]+$/,
+                            		message: '所属旗县只能包含大写、小写、数字和下划线及中文'
+                       			 }
+                   			 }
+               			 },
+               			 town: {
+                   			 message: '所属乡镇验证失败',
+                    		 validators: {
+                      		 	notEmpty: {
+                           		 	message: '所属乡镇不能为空'
+                      		 	 },
+                      			 stringLength: {
+                           			min: 1,
+                            		max: 28,
+                            		message: '所属乡镇长度必须在1到28位之间'
+                       			 },
+                       			 regexp: {
+                            		regexp: /^[a-zA-Z0-9_\W\u4e00-\u9fa5]+$/,
+                            		message: '所属乡镇只能包含大写、小写、数字和下划线及中文'
+                       			 }
+                   			 }
+               			 },
+               			 village: {
+                   			 message: '所属村庄验证失败',
+                    		 validators: {
+                      		 	notEmpty: {
+                           		 	message: '所属村庄不能为空'
+                      		 	 },
+                      			 stringLength: {
+                           			min: 1,
+                            		max: 28,
+                            		message: '所属村庄 长度必须在1到28位之间'
+                       			 },
+                       			 regexp: {
+                            		regexp: /^[a-zA-Z0-9_\W\u4e00-\u9fa5]+$/,
+                            		message: '所属村庄只能包含大写、小写、数字和下划线及中文'
+                       			 }
+                   			 }
+               			 },
+               			 hostnm: {
+                   			 message: '户主姓名验证失败',
+                    		 validators: {
+                      		 	notEmpty: {
+                           		 	message: '户主姓名不能为空'
+                      		 	 },
+                      			 stringLength: {
+                           			min: 2,
+                            		max: 10,
+                            		message: '户主姓名长度必须在2到10位之间'
+                       			 },
+                       			 regexp: {
+                            		regexp: /^[\u4e00-\u9fa5]+$/,
+                            		message: '户主姓名只能为中文'
+                       			 }
+                   			 }
+               			 },
+               			 mobilephe: {
+                   			 message: '户主电话验证失败',
+                    		 validators: {
+                      		 	notEmpty: {
+                           		 	message: '户主电话不能为空'
+                      		 	 },
+                       			 regexp: {
+                            		regexp: /(^1\d{10}$|^\d{4}\-(\d{8}|\d{7})$)/,
+                            		message: '请输入正确的电话号码 例如:13188888888或0371-8888888'
+                       			 }
+                   			 }
+               			 },
+               			  trferpoint: {
+                   			 message: '转移地点验证失败',
+                    		 validators: {
+                      		 	notEmpty: {
+                           		 	message: '转移地点不能为空'
+                      		 	 },
+                      		 	  stringLength: {
+                           			min: 1,
+                            		max: 50,
+                            		message: '转移地点长度必须在1到50位之间'
+                       			 },
+                       			 regexp: {
+                            		regexp: /^[a-zA-Z0-9_\W\u4e00-\u9fa5]+$/,
+                            		message: '转移地点只能包含大写、小写、数字和下划线及中文'
+                       			 }
+                   			 }
+               			 },
+               			 mgrnm: {
+                   			 message: '转移负责人验证失败',
+                    		 validators: {
+                      		 	notEmpty: {
+                           		 	message: '转移负责人不能为空'
+                      		 	 },
+                      			 stringLength: {
+                           			min: 1,
+                            		max: 10,
+                            		message: '转移负责人长度必须在2到10位之间'
+                       			 },
+                       			 regexp: {
+                            		regexp: /^[\u4e00-\u9fa5]+$/,
+                            		message: '转移负责人只能为中文'
+                       			 }
+                   			 }
+               			 },
+               			 mgrphe: {
+                   			 message: '负责人电话验证失败',
+                    		 validators: {
+                      		 	notEmpty: {
+                           		 	message: '负责人电话不能为空'
+                      		 	 },
+                       			 regexp: {
+                            		regexp: /(^1\d{10}$|^\d{4}\-(\d{8}|\d{7})$)/,
+                            		message: '请输入正确的电话号码 例如:13188888888或0371-8888888'
+                       			 }
+                   			 }
+               			 },
+               			 warningsig: {
+                   			 message: '报警信号验证失败',
+                    		 validators: {
+                      		 	notEmpty: {
+                           		 	message: '报警信号不能为空'
+                      		 	 },
+                      		 	  stringLength: {
+                           			min: 1,
+                            		max: 50,
+                            		message: '报警信号长度必须在1到50位之间'
+                       			 },
+                       			 regexp: {
+                            		regexp: /^[a-zA-Z0-9_\W\u4e00-\u9fa5]+$/,
+                            		message: '报警信号只能包含大写、小写、数字和下划线及中文'
+                       			 }
+                   			 }
+               			 },
+               			 peoples: {
+                   			 message: '家庭人口验证失败',
+                    		 validators: {
+                      		 	notEmpty: {
+                           		 	message: '家庭人口不能为空'
+                      		 	 },
+                      			 stringLength: {
+                           			min: 1,
+                            		max: 28,
+                            		message: '家庭人口长度必须在1到2位之间'
+                       			 },
+                       			 regexp: {
+                            		regexp: /^[0-9_]+$/,
+                            		message: '家庭人口只能是数字'
+                       			 }
+                   			 }
+               			 }
+               		}
+               	});
+
+               	var valid=function(){
+               		var bootstrapValidator = $('#cardForm').data('bootstrapValidator');
+        			//手动触发验证
+        			bootstrapValidator.validate();
+       				if(bootstrapValidator.isValid()){
+          			  submit();
+       		 		}
+               	}
+
+				var submit=function(){
+					var data=$('#cardForm').serializeArray();
+					var param={};
+					$.each(data,function(i,obj){
+						param[obj.name]=obj.value;
+					})
+					$.ajax({
+					   type: "PUT",
+					   url:"api/v0.1/fbSeecardB/insert",
+					   data:$('#cardForm').serialize(),// 要提交的表单
+					   	dataType: 'json',
+						data:JSON.stringify(param),
+						contentType: 'application/json',
+						cache : false,
+					   success: function(msg) {
+
+					   		$('#cardForm').data('bootstrapValidator').resetForm(true);
+					   		$('#cardForm')[0].reset();
+					   		$("#mymodal").modal("toggle");
+
+					   	},
+					   error: function(error){
+					   	alert('出错了！请确认网络连接！');
+					   	}
+					});
+				}
+				$('#sub').on('click',valid);
+			}(jQuery))
+		</script>
+</body>
+
+</html>

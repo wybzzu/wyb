@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><configuration>
+    <appender class="ch.qos.logback.core.ConsoleAppender" name="consoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>.%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %n
+            </Pattern>
+        </layout>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+    </appender>
+
+    <appender class="ch.qos.logback.core.rolling.RollingFileAppender" name="dailyRollingFileAppender">
+        <File>c:/tmp/api.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <FileNamePattern>log/api.%d{yyyy-MM-dd}.log</FileNamePattern>
+
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</Pattern>
+        </encoder>
+    </appender>
+    <appender class="ch.qos.logback.core.rolling.RollingFileAppender" name="minuteRollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover every minute -->
+            <FileNamePattern>c:/tmp/minutes/usif-minute.%d{yyyy-MM-dd_HH-mm}.log</FileNamePattern>
+
+            <!-- keep 30 minutes' worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <Pattern>%-4relative [%thread] %-5level %logger{35} - %msg %n</Pattern>
+        </encoder>
+    </appender>
+    <!-- <appender class="ch.qos.logback.classic.db.DBAppender" name="db-classic-mysql-pool">
+        <connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource">
+            <dataSource class="org.apache.commons.dbcp.BasicDataSource">
+                <driverClassName>com.mysql.jdbc.Driver</driverClassName>
+                <url>jdbc:mysql://192.168.0.103:3306/usif?useUnicode=true&amp;amp;characterEncoding=UTF-8</url>
+                <username>root</username>
+                <password>123456</password>
+            </dataSource>
+        </connectionSource>
+    </appender> -->
+   
+
+    <logger additivity="true" name="com.huitu">
+        <level value="DEBUG"/>
+        <appender-ref ref="dailyRollingFileAppender"/>
+        <appender-ref ref="minuteRollingFileAppender"/>
+        <appender-ref ref="consoleAppender"/>
+    </logger>
+
+    <logger additivity="true" name="com.huitu">
+        <level value="DEBUG"/>
+        <!-- <appender-ref ref="db-classic-mysql"/> -->
+    </logger>
+    <logger level="INFO" name="com.ibatis"/>
+    <logger level="INFO" name="com.ibatis.common.jdbc.SimpleDataSource"/>
+    <logger level="INFO" name="com.ibatis.common.jdbc.ScriptRunner"/>
+    <logger level="INFO" name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate"/>
+    <logger level="INFO" name="java.sql.Connection"/>
+    <logger level="INFO" name="java.sql.Statement"/>
+    <logger level="INFO" name="java.sql.PreparedStatement"/>
+
+    <root>
+        <level value="DEBUG"/>
+        <appender-ref ref="consoleAppender"/>
+    </root>
+</configuration>
